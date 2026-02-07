@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🚀Arjun's proper case console🔠🔄️🔡</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 40px;
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      margin-bottom: 20px;
+    }
+    .button-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .button-row button,
+    #noneButton {
+      flex: 1;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      border: 1px solid #00ff00;
+      background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 10px #00ff00;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .button-row button:hover,
+    #noneButton:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ff00;
+    }
+    #mrButton { color: MistyRose; }
+    #msButton { color: MistyRose; }
+    #mrsButton { color: MistyRose; }
+    #drButton { color: MistyRose; }
+    #noneButton {
+      width: 100%;
+      font-size: 22px;
+      color: #00ff00;
+    }
+    #output {
+      margin-top: 20px;
+      font-weight: bold;
+      white-space: pre-wrap;
+    }
+    .toggle-container {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+    .toggle-container button {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #00ff00;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🚀Arjun's proper case console🔠🔄️🔡</h2>
+
+  <div class="toggle-container">
+    <button onclick="toggleMode()" id="modeToggle">🌙</button>
+  </div>
+
+  <textarea id="inputText" rows="3" placeholder="Enter name(s) here..."></textarea>
+
+  <div class="button-row">
+    <button id="mrButton" onclick="convertWithSalutation('Mr.')">👨 Mr.</button>
+    <button id="msButton" onclick="convertWithSalutation('Ms.')">👩 Ms.</button>
+    <button id="mrsButton" onclick="convertWithSalutation('Mrs.')">👱 Mrs.</button>
+    <button id="drButton" onclick="convertWithSalutation('Dr.')">🧑‍⚕️ Dr.</button>
+  </div>
+
+  <button id="noneButton" onclick="convertWithSalutation('')">None</button>
+
+  <div id="output"></div>
+
+  <script>
+    function convertWithSalutation(salutation) {
+      const input = document.getElementById("inputText").value.trim();
+      if (!input) return;
+
+      const properCaseName = input
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      const finalOutput = salutation ? salutation + " " + properCaseName : properCaseName;
+
+      document.getElementById("output").innerText = finalOutput;
+
+      navigator.clipboard.writeText(finalOutput).then(() => {
+        document.getElementById("inputText").value = "";
+      });
+    }
+
+    function toggleMode() {
+      const body = document.body;
+      const toggle = document.getElementById("modeToggle");
+      if (body.style.backgroundColor === "black") {
+        body.style.backgroundColor = "white";
+        body.style.color = "black";
+        toggle.innerText = "☀️";
+      } else {
+        body.style.backgroundColor = "black";
+        body.style.color = "#00ff00";
+        toggle.innerText = "🌙";
+      }
+    }
+  </script>
+
+</body>
+</html>
